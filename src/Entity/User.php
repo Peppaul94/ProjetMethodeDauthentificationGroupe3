@@ -59,11 +59,30 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type: Types::STRING)]
     private ?string $password = null;
 
+     /**
+     * This method will be called before persisting the entity.
+     * 
+     * @ORM\PrePersist
+     * @ORM\PreUpdate
+     */
+    public function hashPassword(UserPasswordHasherInterface $passwordHasher): void
+    {
+        if ($this->password !== null) {
+            $this->password = $passwordHasher->hashPassword($this, $this->password);
+        }
+    }
+
     /**
      * @var string[]
      */
     #[ORM\Column(type: Types::JSON)]
     private array $roles = [];
+
+    #[ORM\Column(length: 255)]
+    private ?string $phone = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $city = null;
 
     public function getId(): ?int
     {
@@ -163,5 +182,29 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function __unserialize(array $data): void
     {
         [$this->id, $this->username, $this->password] = $data;
+    }
+
+    public function getPhone(): ?string
+    {
+        return $this->phone;
+    }
+
+    public function setPhone(string $phone): static
+    {
+        $this->phone = $phone;
+
+        return $this;
+    }
+
+    public function getCity(): ?string
+    {
+        return $this->city;
+    }
+
+    public function setCity(string $city): static
+    {
+        $this->city = $city;
+
+        return $this;
     }
 }

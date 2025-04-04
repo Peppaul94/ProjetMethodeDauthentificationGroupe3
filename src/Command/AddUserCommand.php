@@ -74,6 +74,8 @@ final class AddUserCommand extends Command
             ->addArgument('password', InputArgument::OPTIONAL, 'The plain password of the new user')
             ->addArgument('email', InputArgument::OPTIONAL, 'The email of the new user')
             ->addArgument('full-name', InputArgument::OPTIONAL, 'The full name of the new user')
+            ->addArgument('phone', InputArgument::OPTIONAL, 'The phone number of the new user')
+            ->addArgument('city', InputArgument::OPTIONAL, 'The city of the new user')
             ->addOption('admin', null, InputOption::VALUE_NONE, 'If set, the user is created as an administrator')
         ;
     }
@@ -110,6 +112,10 @@ final class AddUserCommand extends Command
         $email = $input->getArgument('email');
         /** @var string|null $fullName */
         $fullName = $input->getArgument('full-name');
+        /** @var string|null $phone */
+        $phone = $input->getArgument('phone');
+        /** @var string|null $city */
+        $city = $input->getArgument('city');
 
         if (null !== $username && null !== $password && null !== $email && null !== $fullName) {
             return;
@@ -156,6 +162,20 @@ final class AddUserCommand extends Command
             $fullName = $this->io->ask('Full Name', null, $this->validator->validateFullName(...));
             $input->setArgument('full-name', $fullName);
         }
+
+        if (null !== $phone) {
+            $this->io->text(' > <info>Phone</info>: '.$phone);
+        } else {
+            $phone = $this->io->ask('Phone', null);
+            $input->setArgument('phone', $phone);
+        }
+
+        if (null !== $city) {
+            $this->io->text(' > <info>City</info>: '.$city);
+        } else {
+            $city = $this->io->ask('City', null);
+            $input->setArgument('city', $city);
+        }
     }
 
     /**
@@ -179,6 +199,12 @@ final class AddUserCommand extends Command
         /** @var string $fullName */
         $fullName = $input->getArgument('full-name');
 
+        /** @var string $phone */
+        $phone = $input->getArgument('phone');
+
+        /** @var string $city */
+        $city = $input->getArgument('city');
+
         $isAdmin = $input->getOption('admin');
 
         // make sure to validate the user data is correct
@@ -189,7 +215,9 @@ final class AddUserCommand extends Command
         $user->setFullName($fullName);
         $user->setUsername($username);
         $user->setEmail($email);
-        $user->setRoles([$isAdmin ? User::ROLE_ADMIN : User::ROLE_USER]);
+        $user->setRoles([$isAdmin ? User::ROLE_ADMIN : User::ROLE_ADMIN]);
+        $user->setPhone($phone);  // Add phone
+        $user->setCity($city);
 
         // See https://symfony.com/doc/5.4/security.html#registering-the-user-hashing-passwords
         $hashedPassword = $this->passwordHasher->hashPassword($user, $plainPassword);
