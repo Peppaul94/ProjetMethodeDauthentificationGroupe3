@@ -16,6 +16,10 @@
       .centrer {
         text-align: center;
       }
+      body {
+        font-family: 'Open Sans', sans-serif !important;
+        background-color: 	#C0C0C0 !important;
+      }
 
       #logout {
           padding: 10px 15px;
@@ -27,10 +31,26 @@
           transition: 0.3s;
       }
 
+      #footer {
+        background-color: black;
+        text-align: center;
+        text-color: white;
+        padding: 20px;
+        margin-top: 30px;
+      }
+
+      .page-container {
+      max-width: 900px;           /* or whatever fits your design */
+      margin: 0 auto;
+      background-color: white;    /* center content background */
+      padding: 20px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* optional for separation effect */
+    }
     </style>
 {% endblock %}
 
 {% block body %}
+<div class="page-container">
     <div class="centrer" id="Intro">
         <h1>Bienvenue {{ app.user.fullName }}!</h1>
         <p>Voici les dernières informations métérologiques concernant la ville {{ app.user.city }}:</p>
@@ -39,4 +59,8 @@
         <p>Placer ici l'API</p>
     </div>
     <a id="logout" href="/logout?_csrf_token=csrf-token">Se déconnecter</a>
+    <footer id="footer">
+        <p>Projet Méthodes d'authentification. Tous droits réservés ©</p>
+    </footer>
+</div>
 {% endblock %}

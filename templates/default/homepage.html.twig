@@ -7,12 +7,17 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand&family=Roboto&family=Lato&family=Open+Sans&display=swap" rel="stylesheet">
 
 {% endblock %}
 {% block footer %}{% endblock %}
 
 {% block stylesheets %}
     <style>
+        body {
+        font-family: 'Open Sans', sans-serif !important;
+        background-color: 	#C0C0C0 !important;
+      }
       .centrer {
         text-align: center;
       }
@@ -78,12 +83,27 @@
       #footer {
         background-color: black;
         text-align: center;
-        color: white;
+        text-color: white;
+        padding: 20px;
+        margin-top: 30px;
       }
+
+      #footer p {
+        font-weight: normal !important;
+      }
+
+    .page-container {
+      max-width: 900px;           /* or whatever fits your design */
+      margin: 0 auto;
+      background-color: white;    /* center content background */
+      padding: 20px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* optional for separation effect */
+    }
     </style>
 {% endblock %}
 
 {% block body %}
+<div class="page-container">
     <div class="centrer" id="Intro">
         <h1>Projet Méthode d'authentification</h1>
         <h2>Bienvenue sur notre site!</h2>
@@ -121,7 +141,7 @@
     </div>
     
     <div class="centrer" id="Connexion">
-        <p>Vous voulez obtenir des informations sur votre ville? Il suffit de vous connecter ou de vous créer un compte.</p>
+        <p>Vous voulez obtenir des informations sur votre ville? Il suffit de vous connecter!</p>
         <a class="btn btn-primary" href="/fr/login" role="button">Connexion</a>
     </div>
     
@@ -171,4 +191,8 @@
             <a class="a" href="index.php?name=rayan">Rayan</a>
         </div>
     </div>
+    <footer id="footer">
+        <p>Projet Méthodes d'authentification. Tous droits réservés ©</p>
+    </footer>
+</div>
 {% endblock %}
