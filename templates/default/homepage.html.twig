@@ -32,6 +32,10 @@
           object-fit: contain;
       }
 
+      .carousel slide {
+        margin-bottom: 20px
+      }
+
       #Apropos {
         display: flex;
         align-items: center;
@@ -89,8 +93,8 @@
       }
 
       #footer p {
-        font-weight: normal !important;
-      }
+        color: white !important;
+    }
 
     .page-container {
       max-width: 900px;           /* or whatever fits your design */
@@ -111,7 +115,7 @@
         <p>Voici un carousel résumant les informations de diverses villes:</p>
     </div>
     
-    <div id="myCarousel" class="carousel slide" data-ride="carousel">
+    <div id="myCarousel" class="carousel slide mb-5" data-ride="carousel">
         <ol class="carousel-indicators">
             <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
             <li data-target="#myCarousel" data-slide-to="1"></li>
@@ -141,7 +145,6 @@
             <span class="sr-only">Next</span>
         </a>
     </div>
-    
     <div class="centrer" id="Connexion">
         <p>Vous voulez obtenir des informations sur votre ville? Il suffit de vous connecter!</p>
         <a class="btn btn-primary" href="/fr/login" role="button">Connexion</a>
@@ -193,7 +196,7 @@
             <a class="a" href="index.php?name=rayan">Rayan</a>
         </div>
     </div>
-    <footer id="footer">
+    <footer id="footer" style="background-color:black; color:white; text-align:center; padding:20px; margin-top:30px; font-weight:bold; font-size:16px;">
         <p>Projet Méthodes d'authentification. Tous droits réservés ©</p>
     </footer>
 </div>
