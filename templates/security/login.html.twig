@@ -63,14 +63,6 @@
                 <div class="form-group form-group-password">
                     <label for="password">{{ 'label.password'|trans }}</label>
                     <input type="password" id="password" name="_password" class="form-control" {{ stimulus_target('login', 'password') }} />
-                    <button class="btn btn-primary pull-right" type="button" {{ stimulus_action('login', 'togglePasswordInputType') }}><twig:ux:icon name="tabler:eye" aria-hidden="false" aria-label="Toggle password visibility"/></button>
-                </div>
-
-                <div class="form-group">
-                    <label>
-                        <input type="checkbox" name="_remember_me" checked/>
-                        {{ 'label.remember_me'|trans }}
-                    </label>
                 </div>
                 <input type="hidden" name="_target_path" value="{{ app.request.get('redirect_to') }}"/>
                 <input type="hidden" name="_csrf_token" data-controller="csrf-protection" value="{{ csrf_token('authenticate') }}"/>

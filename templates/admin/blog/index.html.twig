@@ -55,9 +55,13 @@
         <h1>Bienvenue {{ app.user.fullName }}!</h1>
         <p>Voici les dernières informations métérologiques concernant la ville {{ app.user.city }}:</p>
     </div>
-    <div class="centrer" id="InfoVille">
-        <p>Placer ici l'API</p>
-    </div>
+    <h2>{{ weather.name }} Weather Status</h2>
+<p>Description: {{ weather.weather[0].description }}</p>
+<p>Temperature Max: {{ weather.main.temp_max }} °C</p>
+<p>Temperature Min: {{ weather.main.temp_min }} °C</p>
+<p>Humidity: {{ weather.main.humidity }}%</p>
+<p>Wind Speed: {{ weather.wind.speed }} km/h</p>
+<img src="https://openweathermap.org/img/w/{{ weather.weather[0].icon }}.png" alt="Weather Icon">
     <a id="logout" href="/logout?_csrf_token=csrf-token">Se déconnecter</a>
     <footer id="footer">
         <p>Projet Méthodes d'authentification. Tous droits réservés ©</p>
