@@ -50,7 +50,7 @@ security:
 
             logout:
                 # The name of the route to redirect to after logging out
-                target: homepage
+                target: app_homepage
                 
                 # Secure the logout against CSRF
                 enable_csrf: true

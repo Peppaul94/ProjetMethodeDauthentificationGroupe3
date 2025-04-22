@@ -62,8 +62,8 @@ public function index(
     $authorPosts = $posts->findBy(['author' => $user], ['publishedAt' => 'DESC']);
 
     // Weather API integration
-    $city = $user->getCity() ?? 'paris'; // fallback to Paris if no city on user
-    $apiKey = '439ed9f4dbadca391bff0ac13890511a'; // ⚠️ Replace with your real key
+    $city = $user->getCity() ?? 'paris';
+    $apiKey = '439ed9f4dbadca391bff0ac13890511a';
     $url = "https://api.openweathermap.org/data/2.5/weather?q={$city}&appid={$apiKey}&units=metric";
 
     $weather = null;
@@ -73,7 +73,6 @@ public function index(
             $weather = json_decode($response);
         }
     } catch (\Exception $e) {
-        // Optional: log this or ignore silently
     }
 
     return $this->render('admin/blog/index.html.twig', [

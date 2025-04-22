@@ -119,15 +119,17 @@
         </ol>
         
         <div class="carousel-inner">
-            <div class="item active">
-                <img src="{{ asset('images/Paris.jpg') }}" alt="Paris">
-            </div>
-            <div class="item">
-                <img src="{{ asset('images/Berlin.jpg') }}" alt="Berlin">
-            </div>
-            <div class="item">
-                <img src="{{ asset('images/NY.jpg') }}" alt="New York">
-            </div>
+            {% for weather in weatherData %}
+                <div class="item {% if loop.first %}active{% endif %}">
+                    <h2>{{ weather.name }} Weather Status</h2>
+                    <p>Description: {{ weather.weather[0].description }}</p>
+                    <p>Temperature Max: {{ weather.main.temp_max }} °C</p>
+                    <p>Temperature Min: {{ weather.main.temp_min }} °C</p>
+                    <p>Humidity: {{ weather.main.humidity }}%</p>
+                    <p>Wind Speed: {{ weather.wind.speed }} km/h</p>
+                    <img src="https://openweathermap.org/img/w/{{ weather.weather[0].icon }}.png" alt="Weather Icon">
+                </div>
+            {% endfor %}
         </div>
         
         <a class="left carousel-control" href="#myCarousel" data-slide="prev">
