@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Activation de Google Authenticator{% endblock %}
+
+{% block body %}
+  <h1>Activation de Google Authenticator</h1>
+
+  <p>Scannez ce QR code avec l’application :</p>
+  <img src="{{ qrCodeUrl }}" alt="QR Code Google Authenticator">
+
+  <p>Si vous ne pouvez pas scanner, entrez manuellement ce code :
+     <strong>{{ secret }}</strong>
+  </p>
+{% endblock %}
